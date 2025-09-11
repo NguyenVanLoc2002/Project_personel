@@ -61,8 +61,9 @@ public class AuthService {
         String accessToken = jwtService.generateAccessToken(user.getId(), user.getEmail(), roles, permissions);
         String refreshToken = jwtService.generateRefreshToken(user.getId(), user.getEmail());
 
+
         RefreshToken rt = RefreshToken.builder()
-                .tokenHash(passwordEncoder.encode(refreshToken))
+                .tokenHash(refreshToken)
                 .user(user)
                 .expiryDate(Instant.now().plusSeconds(7 * 86400)) // 7 days
                 .revoked(false)
